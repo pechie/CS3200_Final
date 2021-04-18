@@ -2,10 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const app = express();
+const path = require('path');
 
 // serve files from the public directory
 app.use(express.static('public'));
-
 app.use(bodyParser.json());
 
 // start the express web server listening on 8080
@@ -15,7 +15,7 @@ app.listen(8080, () => {
 
 // serve the homepage
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + req.url);
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 // add a document to the DB collection recording the click event

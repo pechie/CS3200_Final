@@ -1,5 +1,4 @@
 const table_button = document.getElementById('myButton');
-
 table_button.addEventListener('click', function(e) {
   console.log('button was clicked');
   let tableName = document.getElementById('table_name').value;
@@ -26,7 +25,6 @@ table_button.addEventListener('click', function(e) {
 });
 
 const log_in_button = document.getElementById("log_in_button");
-
 log_in_button.addEventListener('click', function(e) {
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
@@ -43,6 +41,8 @@ log_in_button.addEventListener('click', function(e) {
   }).then(function(response) {
       if (response.ok) {
         document.getElementById("current_user").innerHTML = "Current User: " + username;
+        document.getElementById("query_button").disabled = false;
+        // enable other buttons
         return;
       } else {
         console.log("response" + response);
@@ -52,4 +52,14 @@ log_in_button.addEventListener('click', function(e) {
     .catch(function(error) {
       console.log(error);
     });
+});
+
+const homeButton = document.getElementById("home_button");
+homeButton.addEventListener('click', function(e) {
+  window.location.href = "index.html";
+});
+
+const queryButton = document.getElementById("query_button");
+queryButton.addEventListener('click', function(e) {
+  window.location.href = "query.html";
 });
