@@ -50,3 +50,5 @@ function getCurrentUsername() {
 function getCurrentEmail() {
   return this.current_email;
 }
+
+export {getCurrentUsername, getCurrentEmail}
