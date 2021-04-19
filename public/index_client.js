@@ -35,7 +35,7 @@ log_in_button.addEventListener('click', function(e) {
 
 const updateButton = document.getElementById("update_button");
 updateButton.addEventListener('click', function(e) {
-  window.location.href = "index.html";
+  window.location.href = "user.html";
 });
 
 const queryButton = document.getElementById("query_button");
