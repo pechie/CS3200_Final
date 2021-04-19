@@ -25,21 +25,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-// add a document to the DB collection recording the click event
-app.post('/table-clicked', (req, res) => {
-  console.log("clicked post");
-  console.dir(req.body, {depth: null});
-
-  con.connect(function(err) {
-    if (err) throw err;
-    con.query("SELECT * FROM lotr_book", function (err, result, fields) {
-      if (err) throw err;
-      console.log(result);
-      res.sendStatus(200);
-    });
-  });
-});
-
 app.post('/log-in-clicked', (req, res) => {
   // connect to database
   con.connect(function(err) {
