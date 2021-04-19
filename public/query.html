@@ -12,10 +12,22 @@
   <h2>Nikolas Pechie and Brad Beckert</h2>
   <div id="outer">
     <div class="inner"><button id="home_button">Home</button></div>
-    <div class="inner"><button id="query_button">Query</button></div>
-    <div class="inner"><button id="add_button">Add</button></div>
-    <div class="inner"><button id="update_button">Update</button></div>
   </div>
+  <p>Search by release id: </p>
+  <form>
+    <label for="release_id">Release ID:</label><br>
+    <input type="text" id="release_id" name="release_id"><br>
+  </form>
+  <button id="search_button_1">Search</button>
+  <p>Search by artist and title:</p>
+  <form>
+    <label for="artist">Artist:</label><br>
+    <input type="text" id="artist" name="artist"><br>
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title"><br>
+  </form>
+  <button id="search_button_2">Search</button>
+  <p id="result">This is where result will be printed.</p>
 </body>
 <script src="query_client.js"></script>
 
