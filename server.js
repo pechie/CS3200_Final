@@ -78,11 +78,11 @@ app.post('/search-2-clicked', (req, res) => {
   con.connect(function(err) {
     con.query("SELECT * FROM releases WHERE artist = \'" + req.body.artist + "\' AND title = \'" + req.body.title + "\'", 
     function (err, result) {
+      console.log(result);
       if (err || result.length == 0) {
         res.sendStatus(404);
       } else {
-        res.send(result);
-        
+        res.status(200).send(JSON.stringify(result));
       }
     });
   });
