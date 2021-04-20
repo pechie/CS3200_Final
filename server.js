@@ -45,7 +45,6 @@ app.post('/log-in-clicked', (req, res) => {
 });
 
 app.post('/search-1-clicked', (req, res) => {
-  console.log("search 1 clicked");
   con.connect(function(err) {
     con.query("SELECT * FROM releases WHERE release_id = " + req.body.release_id, 
     function (err, result) {
