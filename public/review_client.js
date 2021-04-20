@@ -16,12 +16,11 @@ deleteButton.addEventListener('click', function(e) {
   let comments = document.getElementById("comments").value;
 
   const data = {
-    "rating": rating,
-    "comments": comments
+    "username": sessionStorage.getItem("username"),
+    "release_id": sessionStorage.getItem("release_id")
   }
 
-  // change route to delete-review
-  fetch('/add-update-review', {
+  fetch('/delete-review', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data)
@@ -71,10 +70,8 @@ addButton.addEventListener('click', function(e) {
 
 $('#rating').bind('keyup', function() {
   if ($('#rating').val() != '') {
-    $('#delete_button').removeAttr('disabled');
     $('#add_button').removeAttr('disabled');
   } else {
-    $('#delete_button').attr('disabled', 'disabled');
     $('#add_button').attr('disabled', 'disabled');
   }
 });

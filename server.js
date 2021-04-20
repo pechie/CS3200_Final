@@ -114,3 +114,18 @@ app.post('/add-update-review', (req, res) => {
     });
   });
 });
+
+app.post('/delete-review', (req, res) => {
+  con.connect(function(err) {
+    con.query("DELETE FROM reviews WHERE reviews.user = '" 
+    + req.body.username + "' AND reviews.release = " + req.body.release_id, 
+    function (err, result) {
+      if (err) {
+        console.log(err);
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(200);
+      }
+    });
+  });
+});
