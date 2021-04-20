@@ -12,12 +12,61 @@ document.getElementById("current_id").innerHTML =
 
 const deleteButton = document.getElementById("delete_button");
 deleteButton.addEventListener('click', function(e) {
-  // delete
+  let rating = document.getElementById("rating").value;
+  let comments = document.getElementById("comments").value;
+
+  const data = {
+    "rating": rating,
+    "comments": comments
+  }
+
+  // change route to delete-review
+  fetch('/add-update-review', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  }).then(async function(response) {
+    if (response.status && response.status == 404) {
+      // error
+      return;
+    } else {
+      // let release_info = await response.json();
+      return;
+    }
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
 });
 
 const addButton = document.getElementById("add_button");
 addButton.addEventListener('click', function(e) {
-  // add
+  let rating = document.getElementById("rating").value;
+  let comments = document.getElementById("comments").value;
+
+  const data = {
+    "username": sessionStorage.getItem("username"),
+    "release_id": sessionStorage.getItem("release_id"),
+    "rating": rating,
+    "comments": comments
+  }
+
+  fetch('/add-update-review', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  }).then(async function(response) {
+    if (response.status && response.status == 404) {
+      // error
+      return;
+    } else {
+      // let release_info = await response.json();
+      return;
+    }
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
 });
 
 $('#rating').bind('keyup', function() {
