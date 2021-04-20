@@ -3,6 +3,11 @@ homeButton.addEventListener('click', function(e) {
   window.location.href = "index.html";
 });
 
+const reviewButton = document.getElementById("review_button");
+reviewButton.addEventListener('click', function(e) {
+  window.location.href = "review.html";
+});
+
 const searchButton1 = document.getElementById("search_button_1");
 searchButton1.addEventListener('click', function(e) {
   let releaseId = document.getElementById("release_id").value;
@@ -22,6 +27,10 @@ searchButton1.addEventListener('click', function(e) {
     } else {
       let release_info = await response.json();
       document.getElementById("result").innerHTML = "Found release: " + JSON.stringify(release_info[0]);
+      document.getElementById("review_button").disabled = false;
+      sessionStorage.setItem("release_id", releaseId);
+      sessionStorage.setItem("artist", release_info[0].artist);
+      sessionStorage.setItem("title", release_info[0].title);
       return;
     }
   })
@@ -50,6 +59,8 @@ searchButton2.addEventListener('click', function(e) {
       return;
     } else {
       let release_info = await response.json();
+      sessionStorage.setItem("artist", artist);
+      sessionStorage.setItem("title", title);
       document.getElementById("result").innerHTML = "Found release: " + JSON.stringify(release_info[0]);
       return;
     }

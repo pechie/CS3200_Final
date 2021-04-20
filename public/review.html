@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>CS3200 Final Project</title>
+</head>
+
+<body>
+  <h1>CS3200 Final Project</h1>
+  <h2>Nikolas Pechie and Brad Beckert</h2>
+  <div id="outer">
+    <div class="inner"><button id="home_button">Home</button></div>
+  </div>
+  <p id="current_id">Review for title by name</p>
+  <form>
+    <label for="rating">Rating:</label><br>
+    <input type="text" id="rating" name="rating"><br>
+    <label for="comments">Comments:</label><br>
+    <textarea id="comments" name="comments"></textarea><br>
+  </form>
+  <div id="outer">
+    <div class="inner"><button id="delete_button">Delete Review</button></div>
+    <div class="inner"><button id="add_button" disabled>Add/Update Review</button></div>
+  </div>
+  <p id="extra_info"></p>
+</body>
+<script src="review_client.js"></script>
+
+</html>

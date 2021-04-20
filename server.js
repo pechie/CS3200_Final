@@ -72,3 +72,60 @@ app.post('/search-2-clicked', (req, res) => {
     });
   });
 });
+
+app.post('/add-update-review', (req, res) => {
+  con.connect(function(err) {
+    con.query("SELECT * FROM reviews WHERE reviews.release = " + req.body.release_id + " AND reviews.user = '" + req.body.username + "'",
+    function(err, result) {
+      if (!result || result.length == 0) {
+        // add review
+        let newReleaseId = 0;
+        con.query("SELECT MAX(reviews_id) FROM reviews", function(err, result) {
+          if (!err) {
+            newReleaseId = result[0]['MAX(reviews_id)'] + 1;
+            con.query("INSERT INTO reviews "
+            + "values (" + newReleaseId + ",'" + req.body.username + "'," 
+            + req.body.release_id + "," + req.body.rating + ",'" + req.body.comments + "')",
+            function(err, result) {
+              if (err) {
+                console.log(err);
+                res.sendStatus(404);
+              } else {
+                res.sendStatus(200);
+              }
+            });
+          }
+        });
+      } else {
+        // update review
+        let reviewId = result[0].reviews_id;
+        con.query("UPDATE reviews SET reviews.rating = " + req.body.rating 
+        + ", reviews.comments= '" + req.body.comments + "' "
+        + "WHERE reviews.reviews_id = " + reviewId,
+        function(err, result) {
+          if (err) {
+            console.log(err);
+            res.sendStatus(404);
+          } else {
+            res.sendStatus(200);
+          }
+        });
+      }
+    });
+  });
+});
+
+app.post('/delete-review', (req, res) => {
+  con.connect(function(err) {
+    con.query("DELETE FROM reviews WHERE reviews.user = '" 
+    + req.body.username + "' AND reviews.release = " + req.body.release_id, 
+    function (err, result) {
+      if (err) {
+        console.log(err);
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(200);
+      }
+    });
+  });
+});
