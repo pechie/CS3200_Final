@@ -1,5 +1,3 @@
-let current_release_id = 0;
-
 const homeButton = document.getElementById("home_button");
 homeButton.addEventListener('click', function(e) {
   window.location.href = "index.html";
@@ -24,7 +22,7 @@ searchButton1.addEventListener('click', function(e) {
     } else {
       let release_info = await response.json();
       document.getElementById("result").innerHTML = "Found release: " + JSON.stringify(release_info[0]);
-      current_release_id = releaseId;
+      sessionStorage.setItem("release_id", releaseId);
       return;
     }
   })
@@ -53,6 +51,8 @@ searchButton2.addEventListener('click', function(e) {
       return;
     } else {
       let release_info = await response.json();
+      sessionStorage.setItem("artist", artist);
+      sessionStorage.setItem("title", title);
       document.getElementById("result").innerHTML = "Found release: " + JSON.stringify(release_info[0]);
       return;
     }
@@ -61,9 +61,3 @@ searchButton2.addEventListener('click', function(e) {
     console.log(error);
   });
 });
-
-function getCurrentReleaseId() {
-  return this.current_release_id;
-}
-
-export {getCurrentReleaseId}
