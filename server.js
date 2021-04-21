@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 const con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: 'password',
+  password: process.env.MYSQL_PASSWORD,
   database: "rate_your_music"
 });
 
@@ -46,7 +46,6 @@ app.post('/log-in-clicked', (req, res) => {
 });
 
 app.post('/search-1-clicked', (req, res) => {
-  console.log("search 1 clicked");
   con.connect(function (err) {
     con.query("SELECT * FROM releases WHERE release_id = " + req.body.release_id,
       function (err, result) {
